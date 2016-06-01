@@ -302,18 +302,18 @@ _scp_local_files()
     local IFS=$'\n'
 
     local dirsonly=false
-    if [[ $1 == -d ]]; then
+    if [[ ${1:-} == -d ]]; then
         dirsonly=true
         shift
     fi
 
     if $dirsonly ; then
         COMPREPLY+=( $( command ls -aF1dL $cur* 2>/dev/null | \
-            sed -e "s/$_scp_path_esc/\\\\&/g" -e '/[^\/]$/d' -e "s/^/$1/") )
+            sed -e "s/$_scp_path_esc/\\\\&/g" -e '/[^\/]$/d' -e "s/^/${1:-}/") )
     else
         COMPREPLY+=( $( command ls -aF1dL $cur* 2>/dev/null | \
             sed -e "s/$_scp_path_esc/\\\\&/g" -e 's/[*@|=]$//g' \
-            -e 's/[^\/]$/& /g' -e "s/^/$1/") )
+            -e 's/[^\/]$/& /g' -e "s/^/${1:-}/") )
     fi
 }
 

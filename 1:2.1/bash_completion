@@ -1423,9 +1423,9 @@ _known_hosts()
 # Return: Completions, starting with CWORD, are added to COMPREPLY[]
 _known_hosts_real()
 {
-    local configfile flag prefix
-    local cur curd awkcur user suffix aliases i host
-    local -a kh khd config
+    local configfile="" flag prefix=""
+    local cur curd awkcur user="" suffix aliases i host
+    local -a kh khd=() config
 
     local OPTIND=1
     while getopts "acF:p:" flag "$@"; do
