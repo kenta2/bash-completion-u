@@ -264,7 +264,7 @@ __reassemble_comp_words_by_ref()
                 [[ $line != [$' \t']* ]] && (( j >= 2 )) && ((j--))
                 # Append word separator to current or new word
                 ref="$2[$j]"
-                eval $2[$j]=\${!ref:-}\${COMP_WORDS[i]}
+                eval $2[$j]=\${!ref-}\${COMP_WORDS[i]}
                 # Indicate new cword
                 [[ $i == $COMP_CWORD ]] && eval $3=$j
                 # Remove optional whitespace + word separator from line copy
@@ -278,7 +278,7 @@ __reassemble_comp_words_by_ref()
             done
             # Append word to current word
             ref="$2[$j]"
-            eval $2[$j]=\${!ref:-}\${COMP_WORDS[i]}
+            eval $2[$j]=\${!ref-}\${COMP_WORDS[i]}
             # Remove optional whitespace + word from line copy
             line=${line#*"${COMP_WORDS[i]}"}
             # Indicate new cword
